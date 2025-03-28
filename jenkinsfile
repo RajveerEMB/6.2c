@@ -6,42 +6,49 @@ pipeline {
             steps {
                 echo 'Building the project'
                 git branch: 'main', url: 'https://github.com/RajveerEMB/6.2c.git'
+                // Tool: Git
             }
         }
 
-         stage('Unit and Integration Tests') {
+        stage('Unit and Integration Tests') {
             steps {
-                echo 'Running unit'
+                echo 'Running unit and integration tests'
+                // Tool: TestNG, PyTest, Mocha etc.
             }
         }
 
         stage('Code Analysis') {
             steps {
                 echo 'Running code analysis'
+                // Tool: SonarQube, ESLint, PMD, Checkstyle etc.
             }
         }
 
         stage('Security Scan') {
             steps {
                 echo 'Performing security scan'
+                // Tool: OWASP Dependency Check, Snyk, etc.
             }
         }
 
         stage('Deploy to Staging') {
             steps {
                 echo "Deploying the application to staging"
+                // Tool: Docker, Helm, Ansible, etc.
             }
         }
 
         stage('Integration Tests on Staging') {
             steps {
                 echo "Running tests on staging"
+                // Tool: Selenium, Postman, etc.
             }
         }
 
         stage('Deploy to Production') {
             steps {
-                 echo "Deploying application"
+                echo "Deploying application"
+                // Tool: AWS CodeDeploy, Azure DevOps, etc.
             }
         }
     }
@@ -54,10 +61,10 @@ pipeline {
                 $SMTPPort = 587
                 $SMTPFrom = "rssehgal3@gmail.com"
                 $SMTPTo = "rssehgal3@gmail.com"
-                $SMTPSubject = "Successfull"
+                $SMTPSubject = "Successful"
                 $SMTPBody = "Executed"
                 $SMTPUsername = "rssehgal3@gmail.com"
-                $SMTPPassword = "aybh lyye zizf zucc" 
+                $SMTPPassword = "aybh lyye zizf zucc"
                 $SMTPEnableSSL = $true
 
                 $SMTPClient = New-Object Net.Mail.SmtpClient($SMTPServer, $SMTPPort)
@@ -66,9 +73,9 @@ pipeline {
                 $SMTPClient.Send($SMTPFrom, $SMTPTo, $SMTPSubject, $SMTPBody)
                 '''
                 powershell(powershellCommand)
+                // Tool: PowerShell for email notifications
             }
             echo "DONE"
         }
-        
     }
 }
